@@ -297,8 +297,10 @@ class VectorIndexedBase:
             person_id=row["person_id"],
             voice_id=row["voice_id"],
             model_version=row["model_version"],
-            embedding=np.asarray(
-                row["embedding"],
-                dtype=np.float32,
-            ).tolist(),
+            embedding=row["embedding"]
+            .to_numpy()
+            .astype(
+                np.float32,
+            )
+            .tolist(),
         )
