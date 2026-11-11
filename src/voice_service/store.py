@@ -292,13 +292,10 @@ class VectorIndexedBase:
 
         if row is None:
             return None
-
+        vector_list = row["embedding"].to_list()
         return EmbeddingResponse(
             person_id=row["person_id"],
             voice_id=row["voice_id"],
             model_version=row["model_version"],
-            embedding=np.asarray(
-                row["embedding"],
-                dtype=np.float32,
-            ).tolist(),
+            embedding=np.asarray(vector_list, dtype=np.float32).tolist()
         )
